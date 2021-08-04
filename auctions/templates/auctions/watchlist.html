@@ -1,0 +1,35 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <div class="row mb-3">
+        <h4>Your Watchlist</h4>
+    </div>
+    <div class="container-fluid">
+        <div class="row gy-3">
+            {% for listing in listings %}
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                    {% if listing.image %}
+                        <a class="row mb-2" style="border: 1px solid #f0f0f0; margin: auto;" href="{% url 'listing' id=listing.pk %}">
+                            <img src="{{ listing.image }}" alt="{{ listing.product_name }}">
+                        </a>
+                    {% else %}
+                        <a class="row mb-2" style="border: 1px solid #f0f0f0; margin: auto;" href="{% url 'listing' id=listing.pk %}">
+                            <img src="static/auctions/media/no_image_icon.png" alt="{{ listing.product_name }}">
+                        </a>
+                    {% endif %}
+                    <a class="product_name" href="{% url 'listing' id=listing.pk %}">
+                        <span style="font-size: large; font-weight: 500;">{{ listing.product_name }}</span>
+                    </a>
+                    <div class="row">
+                        <h5 style="color: firebrick;">₹{{ listing.current_bid }}</h5>
+                    </div>
+                    <div class="row">
+                        <span style="color: grey; font-size: small;">{{ listing.description }}</span>
+                    </div>
+                </div>
+            {% empty %}
+                <h5>No Listings</h5>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

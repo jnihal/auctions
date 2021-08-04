@@ -1,0 +1,49 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <div class="row mb-3">
+        <h4>Create New Listing</h4>
+    </div>
+
+    {% if message %}
+        <div style="margin: 10px; color: brown;">{{ message }}</div>
+    {% endif %}
+
+        <div class="row">
+            <form action="{% url 'new' %}" method="POST" style="max-width: 600px;">
+                {% csrf_token %}
+                <div class="form-floating mb-3">
+                    <input autofocus type="text" class="form-control" id="floatingInput" name="title" placeholder="Product Name" required>
+                    <label for="floatingInput">Product Name</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <textarea class="form-control" id="floatingTextarea2" style="height: 85px;" name="description" placeholder="Description" required></textarea>
+                    <label for="floatingTextarea2">Description</label>
+                </div>
+                <div class="row" style="margin: 0;">
+                    <div class="form-floating mb-3 col-5" style="padding: 0; margin-right: 6px;">
+                        <input class="form-control" id="floatingInput" type="number" name="starting_bid" placeholder="Starting Bid" required></input>
+                        <label for="floatingInput">Starting Bid</label>
+                    </div>
+                    <div class="form-floating mb-3 col" style="padding: 0; margin-left: 6px;">
+                        <select class="form-select" id="floatingSelect" name="category">
+                            <option value="Fashion">Fashion</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Home">Home</option>
+                            <option value="Toys">Toys</option>
+                            <option value="Sports">Sports</option>
+                            <option selected value="Others">Others</option>
+                        </select>
+                        <label for="floatingSelect">Category (optional)</label>
+                    </div>
+                </div>
+                <div class="form-floating mb-3">
+                    <input class="form-control" id="floatingInput" type="url" name="image_url" placeholder="Image URL (optional)"></input>
+                    <label for="floatingInput">Image URL (optional)</label>
+                </div>
+                <div class="row justify-content-end" style="padding-right: 12px;">
+                    <input class="btn btn-primary" style="width: auto;" type="submit" value="Create Listing">
+                </div>
+            </form>
+        </div>
+{% endblock %}

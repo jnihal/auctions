@@ -1,0 +1,54 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <h2 style="width: auto;">Register</h2>
+    </div>
+
+    {% if message %}
+        <div class="row justify-content-center" style="margin: 10px; color: brown;">{{ message }}</div>
+    {% endif %}
+
+    <div class="row justify-content-center">
+        <form action="{% url 'register' %}" method="post" style="max-width: 500px; margin: 10px;">
+            {% csrf_token %}
+            <div class="row" style="margin: 0;">
+                <div class="form-floating mb-3 col" style="padding: 0; margin-right: 6px;">
+                    <input class="form-control" id="floatingInput" autofocus type="text" name="first_name" placeholder="First Name" required>
+                    <label for="floatingInput">First Name</label>
+                </div>
+                <div class="form-floating mb-3 col" style="padding: 0; margin-left: 6px;">
+                    <input class="form-control" id="floatingInput" type="text" name="last_name" placeholder="Last Name" required>
+                    <label for="floatingInput">Last Name</label>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" id="floatingInput" type="text" name="username" placeholder="Username" required>
+                <label for="floatingInput">Username</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" id="floatingInput" type="email" name="email" placeholder="Email Address" required>
+                <label for="floatingInput">Email Address</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" id="floatingInput" type="password" name="password" placeholder="Password" required>
+                <label for="floatingInput">Password</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" id="floatingInput" type="password" name="confirmation" placeholder="Confirm Password" required>
+                <label for="floatingInput">Confirm Password</label>
+            </div>
+            <div class="row justify-content-center" style="max-width: 85px; margin: auto;">
+                <input class="btn btn-primary" type="submit" value="Register">
+            </div>
+        </form>
+    </div>
+
+    <div class="row justify-content-center" style="margin: 20px;">
+        Already have an account? &nbsp;<a href="{% url 'login' %}" style="width: auto; padding: 0;">Log In here.</a>
+    </div>
+</div>
+
+{% endblock %}

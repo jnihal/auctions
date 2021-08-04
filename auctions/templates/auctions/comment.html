@@ -1,0 +1,17 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <div class="row mb-3">
+        <h4>New Comment</h4>
+    </div>
+
+        <div class="row">
+            <form action="{% url 'comment' id=id %}" method="POST" style="max-width: 600px;">
+                {% csrf_token %}
+                <input autofocus type="textarea" class="form-control mb-3" name="comment" placeholder="Write your comment here" required>
+                <div class="row justify-content-end" style="padding-right: 12px;">
+                    <input class="btn btn-primary" style="width: auto;" type="submit" value="Post Comment">
+                </div>
+            </form>
+        </div>
+{% endblock %}
